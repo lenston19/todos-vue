@@ -17,11 +17,6 @@ export default {
   props: {
     todoList: [],
   },
-  data() {
-    const items = ["asd", "asd", "asd", "asd"];
-    return { items };
-  },
+  setup() {},
 };
 </script>
-
-<style></style>
