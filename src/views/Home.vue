@@ -6,7 +6,10 @@
         <Input v-model="inputValue" />
       </div>
       <div class="col-4 d-flex align-items-center">
-        <span class="todo-btn todo-btn__plus" @click="pushTodo(inputValue)">
+        <span
+          class="todo-btn todo-btn__plus todo-item__icon"
+          @click="pushTodo(inputValue)"
+        >
           <i class="fas fa-plus fw-3 p-1"></i>
         </span>
       </div>
@@ -33,13 +36,16 @@ export default {
     const todoList = $store.state.todoModule.todoList;
     // models
     let inputValue = ref("");
-
+    let currentIndex = ref(0);
     // methods
-    const pushTodo = (value) => {
-      if (value == "") {
+    const pushTodo = (text) => {
+      if (text == "") {
         alert("Enter text");
       } else {
-        $store.commit("todoModule/appendTodo", value);
+        $store.commit("todoModule/appendTodoList", [
+          currentIndex.value++,
+          text,
+        ]);
         inputValue.value = "";
       }
     };
