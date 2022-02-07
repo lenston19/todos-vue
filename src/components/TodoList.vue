@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <h2 class="todo-title">List todo</h2>
-    <div class="col-4" v-for="item in todoList" :key="todoList.indexOf(item)">
+    <div class="col-8" v-for="item in todoList" :key="todoList.indexOf(item)">
       <TodoItem :text="item" />
     </div>
   </div>

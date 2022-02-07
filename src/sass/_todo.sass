@@ -2,8 +2,24 @@
 
 .todo
   &-btn
-    font-size: 30px !important
     cursor: pointer
+    border-radius: 25px
+    transition: .1s
+    &:active
+      background: #3333333a
+    &__plus
+      width: 45px
+      height: 45px
+      display: flex
+      justify-content: center
+      align-items: center
+      font-size: 30px !important
+    &__minus
+      width: 25px
+      height: 25px
+      font-size: 30px !important
+
+
 
   &-input
     padding: 15px 10px
@@ -16,13 +32,34 @@
     padding-bottom: 10px
 
   &-item
+    transition: .2s
+    &__done
+      text-decoration: line-through
+      background: #3333333f !important
+      filter: opacity(0.8)
+      transition: .2s
+
     &__card
-      background: #8c8c8c
+      background: #fff
+      border: 1px solid red
       border-radius: 10px
       padding: 10px 15px
       margin-bottom: 10px
+      display: flex
+      align-items: center
+      justify-content: space-between
 
     &__text
       text-align: start
       font-size: 1.2rem
       font-weight: 600
+
+    &__tools
+      width: 80px
+      padding: 10px
+      display: flex
+      justify-content: center
+      align-items: center
+
+    &__checkbox
+      padding: 20px !important

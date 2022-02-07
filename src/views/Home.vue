@@ -6,8 +6,8 @@
         <Input v-model="inputValue" />
       </div>
       <div class="col-4 d-flex align-items-center">
-        <span class="todo-btn" @click="pushTodo(inputValue)">
-          <i class="fas fa-plus fw-3"></i>
+        <span class="todo-btn todo-btn__plus" @click="pushTodo(inputValue)">
+          <i class="fas fa-plus fw-3 p-1"></i>
         </span>
       </div>
     </div>
@@ -40,7 +40,7 @@ export default {
         alert("Enter text");
       } else {
         $store.commit("todoModule/appendTodo", value);
-        inputValue = "";
+        inputValue.value = "";
       }
     };
 
