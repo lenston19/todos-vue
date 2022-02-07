@@ -22,6 +22,7 @@
 // @ is an alias to /src
 import TodoList from "@/components/TodoList.vue";
 import Input from "../components/Input.vue";
+import Swal from "sweetalert2";
 import { useStore } from "vuex";
 import { ref } from "vue";
 export default {
@@ -40,7 +41,12 @@ export default {
     // methods
     const pushTodo = (text) => {
       if (text == "") {
-        alert("Enter text");
+        Swal.fire({
+          title: "Error!",
+          text: "Enter text",
+          icon: "error",
+          confirmButtonText: "Close",
+        });
       } else {
         $store.commit("todoModule/appendTodoList", [
           currentIndex.value++,
