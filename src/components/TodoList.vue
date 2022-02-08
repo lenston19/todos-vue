@@ -2,7 +2,7 @@
   <div class="row">
     <h2 class="todo-title">List todo</h2>
     <div class="col-8" v-for="item in todoList" :key="todoList.indexOf(item)">
-      <TodoItem :item="item" />
+      <TodoItem :id="item.id" />
     </div>
   </div>
 </template>
@@ -15,8 +15,7 @@ export default {
     TodoItem,
   },
   props: {
-    todoList: [],
+    todoList: Array,
   },
-  setup() {},
 };
 </script>

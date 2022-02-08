@@ -1,5 +1,5 @@
 export const appendTodoList = (state, value) => {
-  state.todoList.push({ id: value[0], text: value[1] });
+  state.todoList.push({ id: value.id, text: value.text, done: value.done });
 };
 
 export const removeTodo = (state, value) => {
@@ -7,4 +7,9 @@ export const removeTodo = (state, value) => {
     state.todoList.findIndex((todo) => todo.id == value),
     1
   );
+};
+
+export const doneTodo = (state, value) => {
+  let itemIndex = state.todoList.filter((todo) => todo.id == value);
+  itemIndex[0].done = !itemIndex[0].done ? true : false;
 };

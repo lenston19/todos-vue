@@ -3,7 +3,7 @@
     <div class="row mb-3">
       <h2 class="todo-title">Create todo</h2>
       <div class="col-8">
-        <Input v-model="inputValue" />
+        <Input v-model="inputValue" @keyup.enter="pushTodo(inputValue)" />
       </div>
       <div class="col-4 d-flex align-items-center">
         <span
@@ -48,10 +48,11 @@ export default {
           confirmButtonText: "Close",
         });
       } else {
-        $store.commit("todoModule/appendTodoList", [
-          currentIndex.value++,
-          text,
-        ]);
+        $store.commit("todoModule/appendTodoList", {
+          id: currentIndex.value++,
+          text: text,
+          done: false,
+        });
         inputValue.value = "";
       }
     };

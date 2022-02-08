@@ -1,15 +1,16 @@
 <template>
   <div
     class="todo-item todo-item__card"
-    :class="checked ? 'text-muted todo-item__done' : ''"
+    :class="todoById.done ? 'text-muted todo-item__done' : ''"
   >
     <p class="todo-item__text">
-      {{ item?.text }}
+      {{ todoById.text }}
     </p>
     <div class="todo-item__tools">
       <input
         type="checkbox"
-        v-model="checked"
+        v-model="todoById.done"
+        @click="doneTodo()"
         class="me-3 todo-item__checkbox"
       />
       <span class="todo-item__icon" @click="removeTodo()">
@@ -20,12 +21,11 @@
 </template>
 
 <script>
-import { ref } from "vue";
 import { useStore } from "vuex";
 export default {
   props: {
-    item: {
-      type: Object,
+    id: {
+      type: Number,
       required: true,
     },
   },
@@ -33,15 +33,20 @@ export default {
     // using store
     const $store = useStore();
 
+    const todoById = $store.getters["todoModule/getTodoById"](props.id);
+
     // models
-    const checked = ref(false);
 
     // methods
-    const removeTodo = () => {
-      $store.commit("todoModule/removeTodo", props.item.id);
+    const doneTodo = () => {
+      $store.commit("todoModule/doneTodo", props.id);
     };
 
-    return { checked, removeTodo };
+    const removeTodo = () => {
+      $store.commit("todoModule/removeTodo", props.id);
+    };
+
+    return { todoById, removeTodo, doneTodo };
   },
 };
 </script>
