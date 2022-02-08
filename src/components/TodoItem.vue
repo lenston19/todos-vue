@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { computed } from "vue";
 import { useStore } from "vuex";
 export default {
   props: {
@@ -32,18 +33,19 @@ export default {
   setup(props) {
     // using store
     const $store = useStore();
-
-    const todoById = $store.getters["todoModule/getTodoById"](props.id);
+    const todoById = computed(() =>
+      $store.getters["todoModule/getTodoById"](props.id)
+    );
 
     // models
 
     // methods
     const doneTodo = () => {
-      $store.commit("todoModule/doneTodo", props.id);
+      $store.commit("todoModule/doneTodo", todoById.value.id);
     };
 
     const removeTodo = () => {
-      $store.commit("todoModule/removeTodo", props.id);
+      $store.commit("todoModule/removeTodo", todoById.value.id);
     };
 
     return { todoById, removeTodo, doneTodo };

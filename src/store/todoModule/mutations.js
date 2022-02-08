@@ -1,5 +1,5 @@
 export const appendTodoList = (state, value) => {
-  state.todoList.push({ id: value.id, text: value.text, done: value.done });
+  state.todoList.unshift({ id: value.id, text: value.text, done: value.done });
 };
 
 export const removeTodo = (state, value) => {
