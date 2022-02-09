@@ -10,8 +10,8 @@
       <input
         type="checkbox"
         v-model="todoById.done"
-        @click="doneTodo()"
         class="me-3 todo-item__checkbox"
+        @click="doneTodo()"
       />
       <span class="todo-item__icon" @click="removeTodo()">
         <i class="fa fa-minus todo-btn todo-btn__minus p-1"></i>
@@ -23,6 +23,7 @@
 <script>
 import { computed } from "vue";
 import { useStore } from "vuex";
+import Swal from "sweetalert2";
 export default {
   props: {
     id: {
@@ -36,16 +37,25 @@ export default {
     const todoById = computed(() =>
       $store.getters["todoModule/getTodoById"](props.id)
     );
-
     // models
 
     // methods
+
     const doneTodo = () => {
       $store.commit("todoModule/doneTodo", todoById.value.id);
     };
 
     const removeTodo = () => {
       $store.commit("todoModule/removeTodo", todoById.value.id);
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        icon: "success",
+        title: "Success remove",
+      });
     };
 
     return { todoById, removeTodo, doneTodo };
