@@ -1,7 +1,7 @@
 <template>
-  <nav class="navbar navbar-light border-bottom">
+  <nav class="navbar navbar-light">
     <div class="container-fluid">
-      <span class="fs-4 fw-bold"> Todo by lenston </span>
+      <span class="fs-4 fw-bold navbar-title"> Todo by lenston </span>
     </div>
   </nav>
 </template>

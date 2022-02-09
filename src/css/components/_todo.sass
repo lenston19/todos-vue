@@ -2,11 +2,15 @@
 
 .todo
   &-btn
+    display: flex
     cursor: pointer
+    border: 0
     border-radius: 25px
     transition: .1s
+    background: transparent
+    color: #fff
     &:active
-      background: #3333333a
+      background: #cacacaca
     &__plus
       width: 45px
       height: 45px
@@ -15,19 +19,33 @@
       align-items: center
       font-size: 30px !important
     &__minus
-      width: 25px
-      height: 25px
-      font-size: 30px !important
+      padding: 20px
+      font-size: 25px !important
 
+  &-list
+    &-enter-from,
+    &-leave-to
+      opacity: 0
+      transform: translateX(-50px)
 
+    &-move,
+    &-enter-active,
+    &-leave-active
+      transition: all 0.2s ease
 
   &-input
+    background: #ae5f75
     padding: 15px 10px
     outline: none
     width: 100%
     font-size: 1.5rem
+    border: 1px solid #34495E
+    color: #fff
+    &::placeholder
+      color: #fff
 
   &-title
+    color: #aa8e8d
     font-weight: 600
     padding-bottom: 10px
 
@@ -39,9 +57,9 @@
       transition: .2s
 
     &__card
-      background: #fff
-      border: 1px solid red
-      border-radius: 10px
+      color: #fff
+      background: #ae5f75
+      border: 1px solid #2C3E50
       padding: 10px 15px
       margin-bottom: 10px
       display: flex
@@ -49,6 +67,7 @@
       justify-content: space-between
 
     &__text
+      padding: 10px
       text-align: start
       font-size: 1.2rem
       font-weight: 600

@@ -1,11 +1,11 @@
 <template>
   <div
     class="todo-item todo-item__card"
-    :class="todoById.done ? 'text-muted todo-item__done' : ''"
+    :class="todoById.done ? 'todo-item__done' : ''"
   >
-    <p class="todo-item__text">
+    <div class="todo-item__text">
       {{ todoById.text }}
-    </p>
+    </div>
     <div class="todo-item__tools">
       <input
         type="checkbox"
@@ -13,9 +13,9 @@
         class="me-3 todo-item__checkbox"
         @click="doneTodo()"
       />
-      <span class="todo-item__icon" @click="removeTodo()">
-        <i class="fa fa-minus todo-btn todo-btn__minus p-1"></i>
-      </span>
+      <button class="todo-btn" @click="removeTodo()">
+        <i class="fa fa-minus todo-btn__minus p-1"></i>
+      </button>
     </div>
   </div>
 </template>
@@ -51,8 +51,7 @@ export default {
         toast: true,
         position: "top-end",
         showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
+        timer: 1500,
         icon: "success",
         title: "Success remove",
       });

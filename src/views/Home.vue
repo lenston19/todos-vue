@@ -3,7 +3,11 @@
     <div class="row mb-3">
       <h2 class="todo-title">Create todo</h2>
       <div class="col-8">
-        <Input v-model="inputValue" @keyup.enter="pushTodo(inputValue)" />
+        <Input
+          :class="'w-100'"
+          v-model="inputValue"
+          @keyup.enter="pushTodo(inputValue)"
+        />
       </div>
       <div class="col-4 d-flex align-items-center">
         <span

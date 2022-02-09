@@ -1,9 +1,11 @@
 <template>
   <div class="row">
     <h2 class="todo-title">List todo</h2>
-    <div class="col-8" v-for="item in todoList" :key="todoList.indexOf(item)">
-      <TodoItem :id="item.id" />
-    </div>
+    <TransitionGroup name="todo-list">
+      <div class="col-8" v-for="item in todoList" :key="item.id">
+        <TodoItem :id="item.id" />
+      </div>
+    </TransitionGroup>
   </div>
 </template>
 
