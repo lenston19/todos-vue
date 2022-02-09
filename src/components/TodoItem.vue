@@ -35,18 +35,20 @@
 import { computed, ref } from "vue";
 import InputTodo from "./InputTodo.vue";
 import { useStore } from "vuex";
-import Swal from "sweetalert2";
+import { useNotify } from "../hooks/useNotify";
+
 export default {
   components: {
     InputTodo,
   },
   props: {
     id: {
-      type: Number,
+      type: String,
       required: true,
     },
   },
   setup(props) {
+    const { successToast } = useNotify();
     // using store
     const $store = useStore();
     const todoById = computed(() =>
@@ -55,21 +57,13 @@ export default {
     // models
     const changed = ref(true);
     // methods
-
     const changeTodo = (text) => {
       $store.commit("todoModule/changeTodo", {
         id: todoById.value.id,
         text: text,
       });
       changed.value = true;
-      Swal.fire({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 1500,
-        icon: "success",
-        title: "Success changed",
-      });
+      successToast("Success changed");
     };
     const doneTodo = () => {
       $store.commit("todoModule/doneTodo", todoById.value.id);
@@ -77,17 +71,16 @@ export default {
 
     const removeTodo = () => {
       $store.commit("todoModule/removeTodo", todoById.value.id);
-      Swal.fire({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 1500,
-        icon: "success",
-        title: "Success remove",
-      });
+      successToast("Success removed");
     };
 
-    return { todoById, removeTodo, doneTodo, changed, changeTodo };
+    return {
+      todoById,
+      removeTodo,
+      doneTodo,
+      changed,
+      changeTodo,
+    };
   },
 };
 </script>

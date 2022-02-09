@@ -1,5 +1,5 @@
-export const appendTodoList = (state, value) => {
-  state.todoList.unshift({ id: value.id, text: value.text, done: value.done });
+export const appendTodoList = (state, { id, text, done }) => {
+  state.todoList.unshift({ id: id, text: text, done: done });
 };
 
 export const removeTodo = (state, value) => {
@@ -9,12 +9,16 @@ export const removeTodo = (state, value) => {
   );
 };
 
-export const doneTodo = (state, value) => {
-  let itemIndex = state.todoList.filter((todo) => todo.id == value);
-  itemIndex[0].done = !itemIndex[0].done ? true : false;
+export const doneTodo = (state, id) => {
+  state.todoList = state.todoList.map((todo) => {
+    todo.id === id && (todo.done = !todo.done);
+    return todo;
+  });
 };
-
-export const changeTodo = (state, value) => {
-  let itemIndex = state.todoList.filter((todo) => todo.id == value.id);
-  itemIndex[0].text = value.text;
+// TODO деконструктизация объекта
+export const changeTodo = (state, { id, text }) => {
+  state.todoList = state.todoList.map((todo) => {
+    todo.id === id && (todo.text = text);
+    return todo;
+  });
 };

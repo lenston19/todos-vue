@@ -26,7 +26,7 @@
 // @ is an alias to /src
 import TodoList from "@/components/TodoList.vue";
 import InputTodo from "../components/InputTodo.vue";
-import Swal from "sweetalert2";
+import { useNotify } from "../hooks/useNotify";
 import { useStore } from "vuex";
 import { ref } from "vue";
 export default {
@@ -36,11 +36,16 @@ export default {
     InputTodo,
   },
   setup() {
+    // using hooks
+    const { errorMessage } = useNotify();
+
     // using store
     const $store = useStore();
     const todoList = $store.state.todoModule.todoList;
+
     // models
     let inputValue = ref("");
+
     // methods
     const uId = () => {
       return (
@@ -49,14 +54,10 @@ export default {
         Date.now().toString(16).slice(4)
       );
     };
+
     const pushTodo = (text) => {
       if (text == "") {
-        Swal.fire({
-          title: "Error!",
-          text: "Enter text",
-          icon: "error",
-          confirmButtonText: "Close",
-        });
+        errorMessage("Enter text");
       } else {
         $store.commit("todoModule/appendTodoList", {
           id: uId(),
