@@ -41,8 +41,14 @@ export default {
     const todoList = $store.state.todoModule.todoList;
     // models
     let inputValue = ref("");
-    let currentIndex = ref(0);
     // methods
+    const uId = () => {
+      return (
+        String.fromCharCode(Math.floor(Math.random() * 26) + 97) +
+        Math.random().toString(16).slice(2) +
+        Date.now().toString(16).slice(4)
+      );
+    };
     const pushTodo = (text) => {
       if (text == "") {
         Swal.fire({
@@ -53,7 +59,7 @@ export default {
         });
       } else {
         $store.commit("todoModule/appendTodoList", {
-          id: currentIndex.value++,
+          id: uId(),
           text: text,
           done: false,
         });
