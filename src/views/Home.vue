@@ -2,14 +2,14 @@
   <div class="container home p-3">
     <div class="row mb-3">
       <h2 class="todo-title">Create todo</h2>
-      <div class="col-8">
-        <Input
-          :class="'w-100'"
+      <div class="col-lg-8 col-10">
+        <InputTodo
+          :class="'w-100 todo-input__border'"
           v-model="inputValue"
           @keyup.enter="pushTodo(inputValue)"
         />
       </div>
-      <div class="col-4 d-flex align-items-center">
+      <div class="col-lg-4 col-2 d-flex align-items-center">
         <span
           class="todo-btn todo-btn__plus todo-item__icon"
           @click="pushTodo(inputValue)"
@@ -25,7 +25,7 @@
 <script>
 // @ is an alias to /src
 import TodoList from "@/components/TodoList.vue";
-import Input from "../components/Input.vue";
+import InputTodo from "../components/InputTodo.vue";
 import Swal from "sweetalert2";
 import { useStore } from "vuex";
 import { ref } from "vue";
@@ -33,7 +33,7 @@ export default {
   name: "Home",
   components: {
     TodoList,
-    Input,
+    InputTodo,
   },
   setup() {
     // using store

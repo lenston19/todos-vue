@@ -13,3 +13,8 @@ export const doneTodo = (state, value) => {
   let itemIndex = state.todoList.filter((todo) => todo.id == value);
   itemIndex[0].done = !itemIndex[0].done ? true : false;
 };
+
+export const changeTodo = (state, value) => {
+  let itemIndex = state.todoList.filter((todo) => todo.id == value.id);
+  itemIndex[0].text = value.text;
+};

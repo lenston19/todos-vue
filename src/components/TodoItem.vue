@@ -1,11 +1,20 @@
 <template>
   <div
+    @dblclick="changed = !changed"
     class="todo-item todo-item__card"
     :class="todoById.done ? 'todo-item__done' : ''"
   >
-    <div class="todo-item__text">
+    <div v-if="changed" class="todo-item__text">
       {{ todoById.text }}
     </div>
+    <InputTodo
+      v-else
+      v-model="todoById.text"
+      type="text"
+      @keypress.enter="changeTodo(todoById.text)"
+      :class="'todo-input todo-input__changed'"
+      :value="todoById.text"
+    />
     <div class="todo-item__tools">
       <input
         type="checkbox"
@@ -21,10 +30,14 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, ref } from "vue";
+import InputTodo from "./InputTodo.vue";
 import { useStore } from "vuex";
 import Swal from "sweetalert2";
 export default {
+  components: {
+    InputTodo,
+  },
   props: {
     id: {
       type: Number,
@@ -38,9 +51,24 @@ export default {
       $store.getters["todoModule/getTodoById"](props.id)
     );
     // models
-
+    const changed = ref(true);
     // methods
 
+    const changeTodo = (text) => {
+      $store.commit("todoModule/changeTodo", {
+        id: todoById.value.id,
+        text: text,
+      });
+      changed.value = true;
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+        icon: "success",
+        title: "Success changed",
+      });
+    };
     const doneTodo = () => {
       $store.commit("todoModule/doneTodo", todoById.value.id);
     };
@@ -57,7 +85,7 @@ export default {
       });
     };
 
-    return { todoById, removeTodo, doneTodo };
+    return { todoById, removeTodo, doneTodo, changed, changeTodo };
   },
 };
 </script>
