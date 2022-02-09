@@ -1,4 +1,7 @@
 <template>
+  <!-- TODO fix bug changed on done -->
+  <!-- TODO added mixin on SWAL -->
+  <!-- TODO check changed text or not -->
   <div
     @dblclick="changed = !changed"
     class="todo-item todo-item__card"
@@ -13,7 +16,6 @@
       type="text"
       @keypress.enter="changeTodo(todoById.text)"
       :class="'todo-input todo-input__changed'"
-      :value="todoById.text"
     />
     <div class="todo-item__tools">
       <input
