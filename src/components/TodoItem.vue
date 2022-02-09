@@ -3,15 +3,15 @@
   <!-- TODO added mixin on SWAL -->
   <!-- TODO check changed text or not -->
   <div
-    @dblclick="changed = !changed"
     class="todo-item todo-item__card"
     :class="todoById.done ? 'todo-item__done' : ''"
   >
-    <div v-if="changed" class="todo-item__text">
+    <div v-if="changed" @dblclick="changed = !changed" class="todo-item__text">
       {{ todoById.text }}
     </div>
     <InputTodo
       v-else
+      @dblclick="changed = !changed"
       v-model="todoById.text"
       type="text"
       @keypress.enter="changeTodo(todoById.text)"

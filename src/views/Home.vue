@@ -10,12 +10,12 @@
         />
       </div>
       <div class="col-lg-4 col-2 d-flex align-items-center">
-        <span
+        <button
           class="todo-btn todo-btn__plus todo-item__icon"
           @click="pushTodo(inputValue)"
         >
           <i class="fas fa-plus fw-3 p-1"></i>
-        </span>
+        </button>
       </div>
     </div>
     <TodoList :todoList="todoList" />
