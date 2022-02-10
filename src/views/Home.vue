@@ -18,7 +18,7 @@
         </button>
       </div>
     </div>
-    <TodoList :todoList="todoList" />
+    <TodoList />
   </div>
 </template>
 
@@ -41,7 +41,6 @@ export default {
 
     // using store
     const $store = useStore();
-    const todoList = $store.state.todoModule.todoList;
 
     // models
     let inputValue = ref("");
@@ -68,7 +67,7 @@ export default {
       }
     };
 
-    return { todoList, pushTodo, inputValue };
+    return { pushTodo, inputValue };
   },
 };
 </script>

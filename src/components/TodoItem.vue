@@ -1,6 +1,5 @@
 <template>
   <!-- TODO fix bug changed on done -->
-  <!-- TODO added mixin on SWAL -->
   <!-- TODO check changed text or not -->
   <div
     class="todo-item todo-item__card"

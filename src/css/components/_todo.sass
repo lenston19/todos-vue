@@ -86,3 +86,20 @@
 
     &__checkbox
       padding: 20px !important
+
+  &-filter
+    margin-bottom: 15px
+    &__input
+      display: none
+      &:checked + .todo-filter__label
+        background: #aa8e8d
+        color: #fff
+
+    &__label
+      user-select: none
+      margin-right: 15px
+      color: #aa8e8d
+      font-weight: 600
+      border: 1px solid #aa8e8d
+      border-radius: 5px
+      padding: 10px
