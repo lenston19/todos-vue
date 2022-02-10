@@ -3,7 +3,7 @@
     <div class="row mb-3">
       <h2 class="todo-title">Create todo</h2>
       <div class="col-lg-8 col-10">
-        <InputTodo
+        <TodoInput
           :class="'w-100 todo-input__border'"
           v-model="inputValue"
           @keyup.enter="pushTodo(inputValue)"
@@ -25,7 +25,7 @@
 <script>
 // @ is an alias to /src
 import TodoList from "@/components/TodoList.vue";
-import InputTodo from "../components/InputTodo.vue";
+import TodoInput from "../components/TodoInput.vue";
 import { useNotify } from "../hooks/useNotify";
 import { useStore } from "vuex";
 import { ref } from "vue";
@@ -33,7 +33,7 @@ export default {
   name: "Home",
   components: {
     TodoList,
-    InputTodo,
+    TodoInput,
   },
   setup() {
     // using hooks

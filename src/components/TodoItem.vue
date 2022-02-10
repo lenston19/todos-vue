@@ -5,16 +5,18 @@
     class="todo-item todo-item__card"
     :class="todoById.done ? 'todo-item__done' : ''"
   >
-    <div v-if="changed" @dblclick="changed = !changed" class="todo-item__text">
+    <div v-if="changed" @dblclick="switchChanged()" class="todo-item__text">
       {{ todoById.text }}
     </div>
-    <InputTodo
+    <TodoInput
       v-else
-      @dblclick="changed = !changed"
+      @dblclick="switchChanged()"
       v-model="todoById.text"
       type="text"
+      @keydown.esc="switchChanged()"
       @keypress.enter="changeTodo(todoById.text)"
       :class="'todo-input todo-input__changed'"
+      :placeholder="'Change todo text'"
     />
     <div class="todo-item__tools">
       <input
@@ -32,13 +34,13 @@
 
 <script>
 import { computed, ref } from "vue";
-import InputTodo from "./InputTodo.vue";
+import TodoInput from "./TodoInput.vue";
 import { useStore } from "vuex";
 import { useNotify } from "../hooks/useNotify";
 
 export default {
   components: {
-    InputTodo,
+    TodoInput,
   },
   props: {
     id: {
@@ -56,6 +58,9 @@ export default {
     // models
     const changed = ref(true);
     // methods
+    const switchChanged = () => {
+      changed.value = !changed.value;
+    };
     const changeTodo = (text) => {
       $store.commit("todoModule/changeTodo", {
         id: todoById.value.id,
@@ -79,6 +84,7 @@ export default {
       doneTodo,
       changed,
       changeTodo,
+      switchChanged,
     };
   },
 };

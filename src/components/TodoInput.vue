@@ -2,10 +2,10 @@
   <!-- TODO add more props -->
   <input
     :value="modelValue"
-    @input="updateInput"
+    @input="$emit('update:modelValue', $event.target.value)"
     type="text"
     class="todo-input"
-    placeholder="Write a todo"
+    :placeholder="placeholder"
     ref="input"
   />
 </template>
@@ -16,19 +16,16 @@ import { ref, onMounted } from "vue";
 export default {
   props: {
     modelValue: String,
+    placeholder: { type: String, default: "Write a todo" },
   },
-  setup(props, context) {
+  setup() {
     const input = ref();
-
-    const updateInput = (event) => {
-      context.emit("update:modelValue", event.target.value);
-    };
 
     onMounted(() => {
       input.value.focus();
     });
 
-    return { input, updateInput, focus };
+    return { input, focus };
   },
 };
 </script>
